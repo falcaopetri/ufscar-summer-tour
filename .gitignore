@@ -1,0 +1,6 @@
+# Build folder
+build/
+# Bin folder
+bin/*
+# Include data folder
+!bin/data
