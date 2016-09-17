@@ -15,7 +15,7 @@ const char* tour::Config::windowTitle = "UFSCar Summer Tour";
 
 std::map<std::string, tour::Piece> tour::Config::places =
 {
-    { "ru", Piece("videos/ru.avi", "RU", 800)},
+    { "ru", Piece("videos/ru.ogv", "RU", 800)},
     { "sul", Piece("videos/sul.ogv", "Area Sul", 500)},
     { "banco", Piece("videos/banco.ogv", "Banco do Brasil", 225)},
     { "ginasio", Piece("videos/ginasio.ogv", "Quadra", 350)},

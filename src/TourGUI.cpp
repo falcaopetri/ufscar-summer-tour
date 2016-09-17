@@ -45,10 +45,9 @@ bool tour::TourGUI::video_display()
     if (!_video)
         return false;
 
-    /* Videos often do not use square pixels - this returns the aspect
-     * ratio of the pixels.
+    /* Videos often do not use square pixels - Adjust this to fit your target bitmap dimensions.
      */
-    float aspect_ratio = 1;//al_get_video_aspect_ratio(_video);
+    float scale = 1.2;
     /* Get the currently visible frame of the video, based on clock
      * time.
      */
@@ -61,29 +60,16 @@ bool tour::TourGUI::video_display()
     if (!frame)
         return false;
 
-    if (/*zoom == 0 &&*/ aspect_ratio > 0.0f)
-    {
-        /* Always make the video fit into the window. */
-        h = al_get_display_height(_display);
-        w = (int)(h * aspect_ratio);
-        if (w > al_get_display_width(_display))
-        {
-            w = al_get_display_width(_display);
-            h = (int)(w / aspect_ratio);
-        }
-    }
-    /*else
-    {
-        w = al_get_video_width(_video);
-        h = al_get_video_height(_video);
-    }*/
-    x = (al_get_display_width(_display) - w) / 2;
-    y = (al_get_display_height(_display) - h) / 2;
-
+    float sw = al_get_bitmap_width(frame);
+    float sh = al_get_bitmap_height(frame);
+    float dw = scale * al_get_video_scaled_width(_video);
+    float dh = scale * al_get_video_scaled_height(_video);
     /* Display the frame. */
     al_draw_scaled_bitmap(frame, 0, 0,
                           al_get_bitmap_width(frame),
-                          al_get_bitmap_height(frame), x, y, w, h, 0);
+                          al_get_bitmap_height(frame), 0, 0,
+                          scale * al_get_video_scaled_width(_video),
+                          scale * al_get_video_scaled_height(_video), 0);
 
     if (_currentVideoFrames)
         _currentVideoFrames--;
@@ -366,6 +352,14 @@ void tour::TourGUI::initAllegro ()
         if(!al_init_image_addon())
         {
             raiseError("failed to initialize image addon!", TourUtil::ErrorType::BITMAP);
+        }
+    }
+
+    // Video Addon
+    {
+        if(!al_init_video_addon())
+        {
+            raiseError("failed to initialize video addon!", TourUtil::ErrorType::ADDON);
         }
     }
 
