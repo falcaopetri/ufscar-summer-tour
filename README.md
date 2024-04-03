@@ -1,4 +1,4 @@
-# The Last: Too Fast
+# UFSCar Summer Tour
 
 <img src="docs/UFSCar20Summer20Tour-img/UFSCar20Summer20Tour-img2.png" width="200px">
 <img src="docs/UFSCar20Summer20Tour-img/UFSCar20Summer20Tour-img3.png" width="200px">
@@ -74,5 +74,6 @@ If you've got any questions, suggestions or comments, we will gladly help you.
 - [x] README
 - [x] Convert documentation
 - [ ] Comments
-- [ ] How to manage the ~600MB of video?
-    - Tmp fix: some cloud-based storage service. Get in touch with us if you need them.
+- [x] How to manage the ~600MB of video?
+    - ~~Tmp fix: some cloud-based storage service. Get in touch with us if you need them.~~
+    - Use Git LFS and [GitHub's LFS quota](https://docs.github.com/en/billing/managing-billing-for-git-large-file-storage/about-billing-for-git-large-file-storage) to version files in a separate, private repo [UFSCar Summer Tour - Data Assets](https://github.com/falcaopetri/ufscar-summer-tour-data).
